@@ -1,9 +1,9 @@
-import { getAllArticles, getHeaderInfo } from "@/lib/api";
-import Image from "next/image";
-import Link from "next/link";
+// import { getAllArticles, getHeaderInfo } from "@/lib/api";
+// import Image from "next/image";
+// import Link from "next/link";
 
 export default async function Home() {
-  const articles = await getAllArticles();
+  // const articles = await getAllArticles();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white dark:bg-black">
@@ -22,7 +22,7 @@ export default async function Home() {
           </div>
           <div className="space-y-12">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {articles && articles.map((article) => (
+              {/* {articles && articles.map((article) => (
                   <article key={article.sys.id} className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden bg-black dark:bg-white">
                     <Image
                       alt="placeholder"
@@ -57,7 +57,7 @@ export default async function Home() {
                       </div>
                     </div>
                   </article>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
