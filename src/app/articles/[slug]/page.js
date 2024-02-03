@@ -6,9 +6,11 @@ import { notFound } from "next/navigation";
 export async function generateStaticParams() {
   const allArticles = await getAllArticles();
 
-  return allArticles.map((article) => ({
-    slug: article.slug,
-  }));
+  if (allArticles) {
+    return allArticles.map((article) => ({
+      slug: article.slug,
+    }));
+  }
 }
 
 export default async function KnowledgeArticlePage({
