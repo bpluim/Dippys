@@ -5,8 +5,8 @@ const Header = ({...props}) => {
   const { logo, navItems } = props;
 
   return (
-    <header className="w-full h-2">
-      <div className="container mx-auto px-4 md:px-6 sticky">
+    <header className="w-full h-26 fixed">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between py-6">
           <div>
             <Link href="/">
