@@ -12,7 +12,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const headerInfo = await getHeaderInfo();
-  console.log({navlinks: headerInfo.navLinksCollection.items})
 
   return (
     <html lang="en">
