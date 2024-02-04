@@ -1,48 +1,6 @@
 // Set a variable that contains all the fields needed for articles when a fetch for
 // content is performed
-const ARTICLE_GRAPHQL_FIELDS = `
-  sys {
-    id
-  }
-  title
-  slug
-  summary
-  details {
-    json
-    links {
-      assets {
-        block {
-          sys {
-            id
-          }
-          url
-          description
-        }
-      }
-    }
-  }
-  date
-  authorName
-  categoryName
-  articleImage {
-    url
-  }
-`;
-
-const NAV_GRAPHQL = `
-  navbar (id: "1YylIS655DQlBo2cJJRbnp") {
-    logo {
-      url
-    }
-    navLinksCollection {
-      items {
-        label
-        url
-        isExternal
-      }
-    }
-  }
-`;
+import { SIDE_BY_SIDE_GRAPHQL, ARTICLE_GRAPHQL, NAV_GRAPHQL } from "./queries";
 
 async function fetchGraphQL(query, preview = false) {
   return fetch(
@@ -76,10 +34,7 @@ function extractHeaderInfo(fetchResponse) {
 }
 
 export async function getAllArticles(
-  // For this demo set the default limit to always return 3 articles.
   limit = 3,
-  // By default this function will return published content but will provide an option to
-  // return draft content for reviewing articles before they are live
   isDraftMode = false
 ) {
   const articles = await fetchGraphQL(
@@ -88,7 +43,7 @@ export async function getAllArticles(
       isDraftMode ? "true" : "false"
     }) {
           items {
-            ${ARTICLE_GRAPHQL_FIELDS}
+            ${ARTICLE_GRAPHQL}
           }
         }
       }`,
@@ -127,4 +82,24 @@ export async function getHeaderInfo(
   );
 
   return extractHeaderInfo(headerInfo);
+}
+
+export async function getSideBySide(
+  title,
+  isDraftMode = false
+) {
+  const sideBySide = await fetchGraphQL(
+    `query {
+      sideBySideSectionCollection(where:{title: "${title}"}, limit: 1, preview: ${
+        isDraftMode ? "true" : "false"
+      }) {
+        items {
+          ${SIDE_BY_SIDE_GRAPHQL}
+        }
+      }
+    }`,
+      isDraftMode
+  );
+
+  return sideBySide?.data?.sideBySideSectionCollection?.items[0];
 }

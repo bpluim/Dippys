@@ -1,9 +1,22 @@
-// import { getAllArticles, getHeaderInfo } from "@/lib/api";
-// import Image from "next/image";
-// import Link from "next/link";
+import { getAllArticles, getSideBySide } from "@/lib/api";
+import Image from "next/image";
+import Link from "next/link";
+import SideBySide from "@/components/SideBySide";
 
 export default async function Home() {
-  // const articles = await getAllArticles();
+  const articles = await getAllArticles();
+  const mountainSection = await getSideBySide("Mountains");
+
+  const mountains = {
+    imageUrl: mountainSection.image.url,
+    imageLeft: mountainSection.imageLeft,
+    title: mountainSection.title,
+    description: mountainSection.description,
+    buttonText: mountainSection.buttonText,
+    buttonUrl: mountainSection.buttonUrl,
+  };
+
+  console.log({mountains})
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white dark:bg-black">
@@ -22,7 +35,7 @@ export default async function Home() {
           </div>
           <div className="space-y-12">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {/* {articles && articles.map((article) => (
+              {articles && articles.map((article) => (
                   <article key={article.sys.id} className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden bg-black dark:bg-white">
                     <Image
                       alt="placeholder"
@@ -57,8 +70,17 @@ export default async function Home() {
                       </div>
                     </div>
                   </article>
-              ))} */}
+              ))}
             </div>
+          </div>
+        </div>
+      </section>
+      <section className="w-full pt-12">
+        <div className="mx-auto container space-y-12 px-4 md:px-6">
+          <div className="space-y-12">
+            {mountains && (
+              <SideBySide {...mountains}/>
+            )}
           </div>
         </div>
       </section>
