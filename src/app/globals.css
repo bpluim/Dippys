@@ -32,7 +32,10 @@ body {
   }
 }
 
+.rive-container {
+  height: 40vh;
 
+}
 
 .skin-container {
   width: 100%;
