@@ -1,3 +1,5 @@
+'use client'
+
 import { useRive, Layout, Fit, Alignment } from "@rive-app/react-canvas";
 
 // Wrapper component to isolate useRive logic that

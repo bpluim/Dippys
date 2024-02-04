@@ -1,11 +1,8 @@
 'use client';
 
-import { useState } from "react";
 import RiveWrapper from "../../components/RiveWrapper";
 
 export default function About() {
-
-
   return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white dark:bg-black">
           <section className="w-full pt-12">    
