@@ -9,8 +9,6 @@ async function fetchGraphQL(query, preview = false) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Switch the Bearer token depending on whether the fetch is supposed to retrieve live
-        // Contentful content or draft content
         Authorization: `Bearer ${
           preview
             ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
@@ -18,8 +16,6 @@ async function fetchGraphQL(query, preview = false) {
         }`,
       },
       body: JSON.stringify({ query }),
-      // Associate all fetches for articles with an "articles" cache tag so content can
-      // be revalidated or updated from Contentful on publish
       next: { tags: ["articles"] },
     }
   ).then((response) => response.json());
@@ -33,6 +29,7 @@ function extractHeaderInfo(fetchResponse) {
   return fetchResponse?.data?.navbar;
 }
 
+// Get all Articles
 export async function getAllArticles(
   limit = 3,
   isDraftMode = false
@@ -52,6 +49,7 @@ export async function getAllArticles(
   return extractArticleEntries(articles);
 }
 
+// Get specific article
 export async function getArticle(
   slug,
   isDraftMode = false
@@ -62,7 +60,7 @@ export async function getArticle(
       isDraftMode ? "true" : "false"
     }) {
           items {
-            ${ARTICLE_GRAPHQL_FIELDS}
+            ${ARTICLE_GRAPHQL}
           }
         }
       }`,
@@ -71,9 +69,8 @@ export async function getArticle(
   return extractArticleEntries(article)[0];
 }
 
+// Get header info
 export async function getHeaderInfo(
-  // By default this function will return published content but will provide an option to
-  // return draft content for reviewing articles before they are live
   isDraftMode = false
 ) {
   const headerInfo = await fetchGraphQL(
@@ -84,6 +81,7 @@ export async function getHeaderInfo(
   return extractHeaderInfo(headerInfo);
 }
 
+// Get side by side info
 export async function getSideBySide(
   title,
   isDraftMode = false

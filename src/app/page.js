@@ -6,6 +6,7 @@ import SideBySide from "@/components/SideBySide";
 export default async function Home() {
   const articles = await getAllArticles();
   const mountainSection = await getSideBySide("Mountains");
+  const pyramidSection = await getSideBySide("Pyramid");
 
   const mountains = {
     imageUrl: mountainSection.image.url,
@@ -16,7 +17,14 @@ export default async function Home() {
     buttonUrl: mountainSection.buttonUrl,
   };
 
-  console.log({mountains})
+  const pyramids = {
+    imageUrl: pyramidSection.image.url,
+    imageLeft: pyramidSection.imageLeft,
+    title: pyramidSection.title,
+    description: pyramidSection.description,
+    buttonText: pyramidSection.buttonText,
+    buttonUrl: pyramidSection.buttonUrl,
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white dark:bg-black">
@@ -80,6 +88,15 @@ export default async function Home() {
           <div className="space-y-12">
             {mountains && (
               <SideBySide {...mountains}/>
+            )}
+          </div>
+        </div>
+      </section>
+      <section className="w-full pt-12">
+        <div className="mx-auto container space-y-12 px-4 md:px-6">
+          <div className="space-y-12">
+            {mountains && (
+              <SideBySide {...pyramids}/>
             )}
           </div>
         </div>
