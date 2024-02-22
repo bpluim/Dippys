@@ -32,31 +32,8 @@ body {
   }
 }
 
-.rive-container {
-  height: 40vh;
-
-}
-
-.skin-container {
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
-  display: flex;
-  justify-content: center;
-  font-weight: 600;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-.skin-btn {
-  text-decoration: none;
-  border: none;
-  background: #7d99ef;
-  border-radius: 15%;
-  height: 32px;
-  margin-top: 20px;
-  padding: 8px 14px;
-  font-weight: 500;
-  color: #ffffff;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 16px;
+  height: 100%;
 }

@@ -10,6 +10,7 @@ export default async function Home() {
 
   const mountains = {
     imageUrl: mountainSection.image.url,
+    overlay: mountainSection.mobileOverlay,
     imageLeft: mountainSection.imageLeft,
     title: mountainSection.title,
     description: mountainSection.description,
@@ -19,6 +20,7 @@ export default async function Home() {
 
   const pyramids = {
     imageUrl: pyramidSection.image.url,
+    overlay: mountainSection.mobileOverlay,
     imageLeft: pyramidSection.imageLeft,
     title: pyramidSection.title,
     description: pyramidSection.description,
@@ -27,8 +29,8 @@ export default async function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white dark:bg-black">
-      <section className="w-full pt-12">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12 md:p-24 bg-white dark:bg-black">
+      <section className="w-full py-12">
         <div className="mx-auto container space-y-12 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -83,7 +85,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full pt-12">
+      <section className="w-full">
         <div className="mx-auto container space-y-12 px-4 md:px-6">
           <div className="space-y-12">
             {mountains && (
@@ -92,7 +94,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full pt-12">
+      <section className="w-full">
         <div className="mx-auto container space-y-12 px-4 md:px-6">
           <div className="space-y-12">
             {mountains && (
