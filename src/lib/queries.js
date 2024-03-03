@@ -49,6 +49,7 @@ export const SIDE_BY_SIDE_GRAPHQL = `
   buttonUrl
   imageLeft
   mobileOverlay
+  darkOverlay
   image {
     url
   }

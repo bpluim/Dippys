@@ -7,10 +7,12 @@ export default async function Home() {
   const articles = await getAllArticles();
   const mountainSection = await getSideBySide("Mountains");
   const pyramidSection = await getSideBySide("Pyramid");
+  const oreoSection = await getSideBySide("Oreos");
 
   const mountains = {
     imageUrl: mountainSection.image.url,
     overlay: mountainSection.mobileOverlay,
+    darkOverlay: mountainSection.darkOverlay,
     imageLeft: mountainSection.imageLeft,
     title: mountainSection.title,
     description: mountainSection.description,
@@ -20,7 +22,8 @@ export default async function Home() {
 
   const pyramids = {
     imageUrl: pyramidSection.image.url,
-    overlay: mountainSection.mobileOverlay,
+    overlay: pyramidSection.mobileOverlay,
+    darkOverlay: pyramidSection.darkOverlay,
     imageLeft: pyramidSection.imageLeft,
     title: pyramidSection.title,
     description: pyramidSection.description,
@@ -28,9 +31,25 @@ export default async function Home() {
     buttonUrl: pyramidSection.buttonUrl,
   };
 
+  const oreos = {
+    imageUrl: oreoSection.image.url,
+    overlay: oreoSection.mobileOverlay,
+    darkOverlay: oreoSection.darkOverlay,
+    imageLeft: oreoSection.imageLeft,
+    title: oreoSection.title,
+    description: oreoSection.description,
+    buttonText: oreoSection.buttonText,
+    buttonUrl: oreoSection.buttonUrl,
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-12 md:p-24 bg-white dark:bg-black">
-      <section className="w-full py-12">
+    <main className="flex min-h-screen flex-col items-center justify-between bg-white dark:bg-black">
+      <section>
+        <div className="overlay">
+
+        </div>
+      </section>
+      <section className="w-full p-12 md:px-24 md:py-28 ">
         <div className="mx-auto container space-y-12 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -85,7 +104,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full">
+      <section className="w-full px-12 md:px-24">
         <div className="mx-auto container space-y-12 px-4 md:px-6">
           <div className="space-y-12">
             {mountains && (
@@ -94,11 +113,20 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full">
+      <section className="w-full px-12 md:px-24">
         <div className="mx-auto container space-y-12 px-4 md:px-6">
           <div className="space-y-12">
             {mountains && (
               <SideBySide {...pyramids}/>
+            )}
+          </div>
+        </div>
+      </section>
+      <section className="w-full px-12 md:px-24">
+        <div className="mx-auto container space-y-12 px-4 md:px-6">
+          <div className="space-y-12">
+            {mountains && (
+              <SideBySide {...oreos}/>
             )}
           </div>
         </div>
