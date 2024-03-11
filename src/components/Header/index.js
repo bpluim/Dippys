@@ -22,6 +22,9 @@ const Header = ({...props}) => {
           </div>
           <nav>
             <div className="flex flex-row justify-end">
+              <div className="mx-2">
+                <Link href="/games">Games</Link>
+              </div>
               {navItems.map((item) => 
                 <div key={item.url} className="mx-2">
                   <Link href={`/${item.url}`}>
